@@ -26,7 +26,7 @@ namespace Infraestructure.Repositories
             using (var connection = new SqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(sql, new { Nombre = entity.Nombre, Apellido = entity.Apellido, Especialidad = entity.Especialidad });
+                var result = await connection.ExecuteAsync(sql, entity);
                 return result;
             }
         }
@@ -69,7 +69,7 @@ namespace Infraestructure.Repositories
             using (var connection = new SqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(sql, new { Id = entity.Id, Nombre = entity.Nombre, Apellido = entity.Apellido, Especialidad = entity.Especialidad });
+                var result = await connection.ExecuteAsync(sql, entity);
                 return result;
             }
         }
