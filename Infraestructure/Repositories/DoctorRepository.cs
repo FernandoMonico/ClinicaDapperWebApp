@@ -76,16 +76,6 @@ namespace Infraestructure.Repositories
             }
         }
 
-        public async Task<int> StoredProcedureAddAsync(Doctor doctor)
-        {
-            var storedProcedure = "SP_DoctorCreate";
-            using (var connection = new SqlConnection(GetConnectionString()))
-            {
-                var result = await connection.ExecuteAsync(storedProcedure, doctor, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
-                return result;
-            }
-        }
-
         public async Task<int> UpdateAsync(Doctor entity)
         {
             var sql = "UPDATE Doctor SET Nombre = @Nombre, Apellido = @Apellido, Especialidad = @Especialidad WHERE Id = @Id";
