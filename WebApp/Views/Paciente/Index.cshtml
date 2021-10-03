@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApp.DTOs.DoctorDto>
+﻿@model IEnumerable<WebApp.DTOs.PacienteDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,9 +8,6 @@
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <a asp-action="CreateList">Create List</a>
 </p>
 <table class="table">
     <thead>
@@ -22,7 +19,13 @@
                 @Html.DisplayNameFor(model => model.NombreCompleto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Especialidad)
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
             <th></th>
         </tr>
@@ -37,11 +40,17 @@
                 @Html.DisplayFor(modelItem => item.NombreCompleto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Especialidad)
+                @Html.DisplayFor(modelItem => item.Altura)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+                @Html.DisplayFor(modelItem => item.Peso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
             </td>
         </tr>
 }

@@ -11,6 +11,7 @@ namespace Infraestructure
     {
         public static void AddInfraestructure(this IServiceCollection services) {
             services.AddTransient<IDoctorRepository, DoctorRepository>();
+            services.AddTransient<IPacienteRepository, PacienteRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }

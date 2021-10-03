@@ -4,6 +4,7 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,18 @@ namespace Infraestructure.Repositories
             {
                 connection.Open();
                 var result = await connection.ExecuteAsync(sql, entity);
+                return result;
+            }
+        }
+
+        public async Task<int> AddListAsync(List<Doctor> doctorList)
+        {
+            var sql = "INSERT INTO Doctor (Nombre, Apellido, Especialidad) VALUES (@Nombre, @Apellido, @Especialidad)";
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+                var result = await connection.ExecuteAsync(sql, doctorList);
                 return result;
             }
         }
@@ -60,6 +73,16 @@ namespace Infraestructure.Repositories
                 connection.Open();
                 var result = await connection.QueryAsync<Doctor>(sql, new { Id = id });
                 return result.FirstOrDefault();
+            }
+        }
+
+        public async Task<int> StoredProcedureAddAsync(Doctor doctor)
+        {
+            var storedProcedure = "SP_DoctorCreate";
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                var result = await connection.ExecuteAsync(storedProcedure, doctor, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
+                return result;
             }
         }
 

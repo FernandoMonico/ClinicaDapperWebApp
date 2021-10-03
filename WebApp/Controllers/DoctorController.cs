@@ -60,5 +60,16 @@ namespace WebApp.Controllers
             var result = await _unitOfWork.Doctores.UpdateAsync(doctor);
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> CreateList() {
+            var doctorList = new List<Doctor>
+            {
+                new Doctor { Nombre = "Nombre 1", Apellido = "Apellido 1", Especialidad = "Especialidad 1" },
+                new Doctor { Nombre = "Nombre 2", Apellido = "Apellido 2", Especialidad = "Especialidad 2" },
+                new Doctor { Nombre = "Nombre 3", Apellido = "Apellido 3", Especialidad = "Especialidad 3" }
+            };
+            var result = await _unitOfWork.Doctores.AddListAsync(doctorList);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -11,9 +11,10 @@ namespace WebApp.DTOs
     {
         public Mapper()
         {
-            CreateMap<Doctor, DoctorDto>()
-                .ForMember(x => x.NombreCompleto, y => y.MapFrom(z => $"{z.Nombre} {z.Apellido}"));
+            CreateMap<Doctor, DoctorDto>();
             CreateMap<DoctorDto, Doctor>();
+            CreateMap<Paciente, PacienteDto>();
+            CreateMap<PacienteDto, Paciente>();
         }
     }
 }

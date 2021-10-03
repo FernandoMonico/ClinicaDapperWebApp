@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.DTOs
 {
-    public class DoctorDto
+    public class PacienteDto
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Campor requerido")]
@@ -14,9 +14,15 @@ namespace WebApp.DTOs
         [Required(ErrorMessage = "Campor requerido")]
         public string Apellido { get; set; }
         [Required(ErrorMessage = "Campor requerido")]
-        public string Especialidad { get; set; }
-        public string NombreCompleto
-        {
+        public double Altura { get; set; }
+        [Required(ErrorMessage = "Campor requerido")]
+        public double Peso { get; set; }
+        [Required(ErrorMessage = "Campor requerido")]
+        [Display(Name = "Fecha de Nacimiento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime FechaNacimiento { get; set; }
+        [Display(Name = "Nombre Completo")]
+        public string NombreCompleto {
             get
             {
                 return $"{Nombre} {Apellido}";
